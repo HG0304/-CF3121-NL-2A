@@ -40,10 +40,15 @@ def menu():
     if escolha == 1:
         n_H = float(input("Digite o número quântico (n): "))
         # propriedades_Atomo_H()
+
+#-------------------------------------------------------------------------------------------------------------------------------#
     elif escolha == 2:
         nInicial=int(input("Digite o número quântico inicial: "))
         nFinal=int(input("Digite o número quântico final: "))
         # Emissao_e_absorcao_de_foton_pelo_h()
+
+
+#-------------------------------------------------------------------------------------------------------------------------------#
     elif escolha == 3:
         print("Digite 1 para absorção e 2 para emissão de fótons pelo H")
         escolha2=int(input())
@@ -65,6 +70,8 @@ def menu():
             else:
                 comprimento_de_onda=float(input("Digite o comprimento de onda do fóton (λ): "))
                 # calculo de nf
+
+#-------------------------------------------------------------------------------------------------------------------------------#
     elif escolha == 4:
         print("Digite 1 para absorção e 2 para emissão de fótons pelo H")
         escolha3=int(input())
@@ -86,11 +93,31 @@ def menu():
             else:
                 comprimento_de_onda=float(input("Digite o comprimento de onda do fóton (λ): "))
                 # calculo de ni
+
+#-------------------------------------------------------------------------------------------------------------------------------#
         
     elif escolha == 5:
-        frequencia_foton()
+        escolha4=int(input("Digite 1 para frequencia do fóton (f) ou 2 para comprimento de onda do fóton (λ):"))
+        if escolha4 == 1:
+            frequencia=float(input("Digite a frequencia do fóton (f): "))
+            # calculo de En em Joule e Ev
+        else:
+            comprimento_de_onda=float(input("Digite o comprimento de onda do fóton (λ): "))
+            # calculo de En em Joule e Ev
+        
+
+#-------------------------------------------------------------------------------------------------------------------------------#        
     elif escolha == 6:
-        energia_foton()
+        Escolha5=float(input("Digite 1 para energia do fóton (Efóton) em Joule (J) ou 2 para elétron-volt (eV): "))
+        if Escolha5 == 1:
+            Efóton=float(input("Digite a energia do fóton (Efóton) em Joule (J): "))
+            # calculo de frequencia e comprimento de onda do fóton
+        else:
+            Efóton=float(input("Digite a energia do fóton (Efóton) em elétron-volt (eV): "))
+            # calculo de frequencia e comprimento de onda do fóton
+        
     else:
         print("Opção inválida")
         menu()
+
+menu()
