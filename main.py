@@ -172,8 +172,10 @@ def menu():
         if Escolha5 == 2: # Converte eV para J
             Efoton = Efoton * 1.6e-19
 
-        f = Efoton / h 
-        comprimento_de_onda = c / f
+                                     # Caso Tenham dois valores:
+        f = Efoton / h               # Menor Energia representa menor frequencia. Maior energia representa maior frequencia
+        comprimento_de_onda = c / f  # O valor maior representa o menor comprimento visivel, e o menor valor o maior comprimento visivel
+        
 
         print('f = {:.2e} Hz'.format(f))
         print('comprimento de onda (λ) = {:.2e} m'.format(comprimento_de_onda))
