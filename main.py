@@ -23,8 +23,23 @@ h=6.626e-34  #constante de Planck
 h2=4.136e-15 #constante de Planck em eV
 
 
+texto_inicial = '''Calculadora do modelo de Bohr para o átomo de hidrogênio
 
+DEENVOLVIDO POR:
+    -Hugo Emílio Nomura
+    -Pedro Henrique Satoru Lima Takahashi
+    -Vitor Monteiro Vianna
+    -Paulo Hudson
+
+OQUE PODEMOS CALCULAR:
+    -Propriedades do Atomo de Hidrogênio
+    -Emissão/Absorção de Fótons pelo Hidrogênio 
+    -Mesmas Entradas para emisão e absorção
+    -Propriedades dos Fotons
+
+'''
 def menu():
+    print(texto_inicial)
     print("Qual é a sua entrada?")
     #Propriedades do Atomo de Hidrogênio
     print("1 - Número quântico (n)")
@@ -167,4 +182,4 @@ def menu():
         print("Opção inválida")
         menu()
 
-menu()  
+menu()
