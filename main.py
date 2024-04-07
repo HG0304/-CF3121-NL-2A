@@ -82,12 +82,12 @@ def menu():
             if opcao2 == 1:
                 frequencia=float(input("Digite a frequencia do fóton (f): "))
                 EInicial=(-13.6/nFinal**2) + (h2*frequencia)
-                nI=int(sqrt(-13.6/EInicial))
+                nI = round(sqrt(-13.6/EInicial))
                 print('nI: ',+nI)
             else:
                 λ=float(input("Digite o comprimento de onda do fóton (λ): "))
                 EInicial=(-13.6/nFinal**2) + ((h2*c)/λ)
-                nI=int(sqrt(-13.6/EInicial))
+                nI = round(sqrt(-13.6/EInicial))
                 print('nI: ',+nI)
 
         #Absorcao
@@ -96,12 +96,12 @@ def menu():
             if opcao2 == 1:
                 frequencia=float(input("Digite a frequencia do fóton (f): "))
                 EInicial=(-13.6/nFinal**2) - (h2*frequencia)
-                nI=round(sqrt(-13.6/EInicial))
+                nI = round(sqrt(-13.6/EInicial))
                 print('nI: ',+nI)
             else:
                 λ=float(input("Digite o comprimento de onda do fóton (λ): "))
                 EInicial=(-13.6/nFinal**2) - ((h2*c)/λ)
-                nI=round(sqrt(-13.6/EInicial))
+                nI = round(sqrt(-13.6/EInicial))
                 print('nI: ',+nI)
         
 #-------------------------------------------------------------------------------------------------------------------------------#
@@ -119,7 +119,7 @@ def menu():
             else:
                 λ=float(input("Digite o comprimento de onda do fóton (λ): "))
                 EFinal=(-13.6/nInicial**2) - ((h2*c)/λ)
-                nF=round(sqrt(-13.6/EFinal))
+                nF = round(sqrt(-13.6/EFinal))
                 print('nF: ',+nF)
         #Absorcao
         else:
@@ -127,12 +127,12 @@ def menu():
             if opcao2 == 1:
                 frequencia=float(input("Digite a frequencia do fóton (f): "))
                 EFinal=(-13.6/nInicial**2) + (h2*frequencia)
-                nF=round(sqrt(-13.6/EFinal))
+                nF = round(sqrt(-13.6/EFinal))
                 print('nF: ',+nF)
             else:
                 λ=float(input("Digite o comprimento de onda do fóton (λ): "))
                 EFinal=(-13.6/nInicial**2) + ((h2*c)/λ)
-                nF=round(sqrt(-13.6/EFinal))
+                nF = round(sqrt(-13.6/EFinal))
                 print('nF: ',+nF)
 
 #-------------------------------------------------------------------------------------------------------------------------------#
