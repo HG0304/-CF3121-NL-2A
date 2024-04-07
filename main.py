@@ -15,7 +15,7 @@
 # absorvido/emitido, frequência do fóton (f) absorvido/emitido, comprimento de onda do fóton ()
 # absorvido/emitido, raio da órbita (rn), velocidade (vn), energia cinética (Kn), energia potencial (Un), energia total (En)
 # e comprimento de onda do elétron (n).
-from math import sqrt
+from math import *
 
 c=3e8        #velocidade da luz
 m=9.11e-31   #massa do eletron
@@ -31,8 +31,8 @@ def menu():
     #Emissão/Absorção de Fótons pelo Hidrogênio 
     print("2 - Número quântico (n) inicial e final")
     #Mesmas Entradas para emisão e absorção
-    print("3 - Numero quântico (n) inicial e frequencia do fóton (f), ou comprimento de onda do fóton (λ)")
-    print("4 - Numero quântico (n) final e frequencia do fóton (f), ou comprimento de onda do fóton (λ)")
+    print("3 - Numero quântico (n) final e frequencia do fóton (f), ou comprimento de onda do fóton (λ)")
+    print("4 - Numero quântico (n) inicial e frequencia do fóton (f), ou comprimento de onda do fóton (λ)")
     #Fotons
     print("5 - Frequencia do fóton (f), ou comprimento de onda do fóton (λ)")
     print("6 - Energia do fóton (Efóton), em Joule (J) ou em elétron-volt (eV)")
@@ -63,8 +63,8 @@ def menu():
             Efóton= abs(EnInicial-EnFinal) #Energia do fóton absorvido
         else:
             Efóton= EnFinal-EnInicial      #Energia do fóton absorvido   
-        λ= h2* c/Efóton                  #Comprimento de onda do fóton
-        f= Efóton/h2                     #Frequencia do fóton
+        λ= h2* c/Efóton                    #Comprimento de onda do fóton
+        f= Efóton/h2                       #Frequencia do fóton
         print('Ef: {:.2e} J'.format(Efóton))
         print('λ: {:.2e} m'.format(λ))
         print('f: {:.2e} Hz'.format(f))
@@ -74,40 +74,66 @@ def menu():
 
 #-------------------------------------------------------------------------------------------------------------------------------#
     elif escolha == 3:
-        nInicial=float(input("Digite o número quântico inicial: "))
-        opcao=int(input("Digite 1 para frequencia do fóton (f) ou 2 para comprimento de onda do fóton (λ): "))
-        if opcao == 1:
-            frequencia=float(input("Digite a frequencia do fóton (f): "))
-            EInicial=(-13.6/nInicial**2) + (h2*frequencia)
-            nI=int(sqrt(-13.6/EInicial))
-            print('nI: ',+nI)
+        nFinal=float(input("Digite o número quântico Final: "))
+        opcao1=int(input("Digite 1 para EMISAO ou 2 para ABSORCAO): "))
+        #Emisao
+        if opcao1==1:
+            opcao2=int(input("Digite 1 para frequencia do fóton (f) ou 2 para comprimento de onda do fóton (λ): "))
+            if opcao2 == 1:
+                frequencia=float(input("Digite a frequencia do fóton (f): "))
+                EInicial=(-13.6/nFinal**2) + (h2*frequencia)
+                nI=int(sqrt(-13.6/EInicial))
+                print('nI: ',+nI)
+            else:
+                λ=float(input("Digite o comprimento de onda do fóton (λ): "))
+                EInicial=(-13.6/nFinal**2) + ((h2*c)/λ)
+                nI=int(sqrt(-13.6/EInicial))
+                print('nI: ',+nI)
+
+        #Absorcao
         else:
-            λ=float(input("Digite o comprimento de onda do fóton (λ): "))
-            EInicial=(-13.6/nInicial**2) + ((h2*c)/λ)
-            nI=int(sqrt(-13.6/EInicial))
-            print('nI: ',+nI)
+            opcao2=int(input("Digite 1 para frequencia do fóton (f) ou 2 para comprimento de onda do fóton (λ): "))
+            if opcao2 == 1:
+                frequencia=float(input("Digite a frequencia do fóton (f): "))
+                EInicial=(-13.6/nFinal**2) - (h2*frequencia)
+                nI=round(sqrt(-13.6/EInicial))
+                print('nI: ',+nI)
+            else:
+                λ=float(input("Digite o comprimento de onda do fóton (λ): "))
+                EInicial=(-13.6/nFinal**2) - ((h2*c)/λ)
+                nI=round(sqrt(-13.6/EInicial))
+                print('nI: ',+nI)
         
 #-------------------------------------------------------------------------------------------------------------------------------#
     elif escolha == 4:
-        escolha3=int(input("Digite 1 para absorção e 2 para emissão de fótons pelo H"))
-        if escolha3==1:
-            nFinal=float(input("Digite o número quântico inicial: "))
+        nInicial=float(input("Digite o número quântico Inicial: "))
+        opcao1=int(input("Digite 1 para EMISAO ou 2 para ABSORCAO): "))
+        #Emisao
+        if opcao1==1:
             opcao2=int(input("Digite 1 para frequencia do fóton (f) ou 2 para comprimento de onda do fóton (λ): "))
             if opcao2 == 1:
                 frequencia=float(input("Digite a frequencia do fóton (f): "))
-                # calculo de nf
+                EFinal=(-13.6/nInicial**2) - (h2*frequencia)
+                nF = round(sqrt(-13.6/EFinal))
+                print('nF: ',+nF)
             else:
-                comprimento_de_onda=float(input("Digite o comprimento de onda do fóton (λ): "))
-                # calculo de nf
-        elif escolha3==2:
-            nInicial=int(input("Digite o número quântico inicial: "))
+                λ=float(input("Digite o comprimento de onda do fóton (λ): "))
+                EFinal=(-13.6/nInicial**2) - ((h2*c)/λ)
+                nF=round(sqrt(-13.6/EFinal))
+                print('nF: ',+nF)
+        #Absorcao
+        else:
             opcao2=int(input("Digite 1 para frequencia do fóton (f) ou 2 para comprimento de onda do fóton (λ): "))
             if opcao2 == 1:
                 frequencia=float(input("Digite a frequencia do fóton (f): "))
-                 # calculo de ni
+                EFinal=(-13.6/nInicial**2) + (h2*frequencia)
+                nF=round(sqrt(-13.6/EFinal))
+                print('nF: ',+nF)
             else:
-                comprimento_de_onda=float(input("Digite o comprimento de onda do fóton (λ): "))
-                # calculo de ni
+                λ=float(input("Digite o comprimento de onda do fóton (λ): "))
+                EFinal=(-13.6/nInicial**2) + ((h2*c)/λ)
+                nF=round(sqrt(-13.6/EFinal))
+                print('nF: ',+nF)
 
 #-------------------------------------------------------------------------------------------------------------------------------#
         
