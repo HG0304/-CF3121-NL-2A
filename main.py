@@ -69,9 +69,6 @@ def menu():
         print('λ: {:.2e} m'.format(λ))
         print('f: {:.2e} Hz'.format(f))
         
-
-
-
 #-------------------------------------------------------------------------------------------------------------------------------#
     elif escolha == 3:
         nFinal=float(input("Digite o número quântico Final: "))
@@ -140,25 +137,34 @@ def menu():
     elif escolha == 5:
         escolha4=int(input("Digite 1 para frequencia do fóton (f) ou 2 para comprimento de onda do fóton (λ):"))
         if escolha4 == 1:
-            frequencia=float(input("Digite a frequencia do fóton (f): "))
-            # calculo de En em Joule e Ev
-        else:
-            comprimento_de_onda=float(input("Digite o comprimento de onda do fóton (λ): "))
-            # calculo de En em Joule e Ev
-        
+            frequencia=float(input("Digite a frequencia do fóton (f) em Hz: "))
+            e_foton_joule = h * frequencia
+            e_foton_ev = e_foton_joule / 1.6e-19
 
-#-------------------------------------------------------------------------------------------------------------------------------#        
-    elif escolha == 6:
-        Escolha5=int(input("Digite 1 para energia do fóton (Efóton) em Joule (J) ou 2 para elétron-volt (eV): "))
-        if Escolha5 == 1:
-            Efóton=float(input("Digite a energia do fóton (Efóton) em Joule (J): "))
-            # calculo de frequencia e comprimento de onda do fóton
         else:
-            Efóton=float(input("Digite a energia do fóton (Efóton) em elétron-volt (eV): "))
-            # calculo de frequencia e comprimento de onda do fóton
+            comprimento_de_onda=float(input("Digite o comprimento de onda do fóton (λ) em metros: "))
+            e_foton_joule = (h * c) / comprimento_de_onda
+            e_foton_ev = e_foton_joule / 1.6e-19
+
+        print('E fóton = {:.2e} J'.format(e_foton_joule))
+        print("E fóton = {:.2e} eV".format(e_foton_ev))
+
+#-------------------------------------------------------------------------------------------------------------------------------#      
+    elif escolha == 6:
+        Escolha5 = int(input("Digite 1 para energia do fóton (Efóton) em Joule (J) ou 2 para elétron-volt (eV): "))
+        Efoton=float(input("Digite a energia do fóton (Efóton) na unidade especificada: "))
+
+        if Escolha5 == 2: # Converte eV para J
+            Efoton = Efoton * 1.6e-19
+
+        f = Efoton / h 
+        comprimento_de_onda = c / f
+
+        print('f = {:.2e} Hz'.format(f))
+        print('comprimento de onda (λ) = {:.2e} m'.format(comprimento_de_onda))
         
     else:
         print("Opção inválida")
         menu()
 
-menu()
+menu()  
