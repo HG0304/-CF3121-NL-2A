@@ -65,7 +65,7 @@ def menu():
         print('Vn: {:.2e} m/s'.format(Vn))
         print('Kn: {:.2e} eV'.format(Kn))
         print('Un: {:.2e} eV'.format(Un))
-        print('En: {:.2e} J'.format(En))
+        print('En: {:.2e} eV'.format(En))
         print('λn: {:.2e} m'.format(λn))
 
 #-------------------------------------------------------------------------------------------------------------------------------#
