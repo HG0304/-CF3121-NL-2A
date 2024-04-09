@@ -63,8 +63,8 @@ def menu():
         λn= h/(m*Vn)                #λn é o comprimento de onda do eletron no atomo de hidrogenio
         print('Rn: {:.2e} m'.format(Rn))
         print('Vn: {:.2e} m/s'.format(Vn))
-        print('Kn: {:.2e} J'.format(Kn))
-        print('Un: {:.2e} J'.format(Un))
+        print('Kn: {:.2e} eV'.format(Kn))
+        print('Un: {:.2e} eV'.format(Un))
         print('En: {:.2e} J'.format(En))
         print('λn: {:.2e} m'.format(λn))
 
@@ -80,7 +80,7 @@ def menu():
             Efóton= EnFinal-EnInicial      #Energia do fóton absorvido   
         λ= h2* c/Efóton                    #Comprimento de onda do fóton
         f= Efóton/h2                       #Frequencia do fóton
-        print('Ef: {:.2e} J'.format(Efóton))
+        print('Ef: {:.2e} eV'.format(Efóton))
         print('λ: {:.2e} m'.format(λ))
         print('f: {:.2e} Hz'.format(f))
         
