@@ -37,13 +37,19 @@ OQUE PODEMOS CALCULAR:
     -Mesmas Entradas para emisão e absorção
     -Propriedades dos Fotons
 
+OBS:
+    -Serie de Lyman: nInicial >= 2 e nFinal = 1
+    -Serie de Balmer: nInicial >= 3 e nFinal = 2
+    -Serie de Paschen: nInicial >= 4 e nFinal = 3
+    -Serie de Brackett: nInicial >= 5 e nFinal = 4
+
 '''
 def menu():
     print(texto_inicial)
     print("Qual é a sua entrada?")
     #Propriedades do Atomo de Hidrogênio
     print("1 - Número quântico (n)")
-    #Emissão/Absorção de Fótons pelo Hidrogênio 
+    #Emissão/Absorção de Fótons pelo Hidrogênio  # Considere o modelo de Bohr para o átomo de hidrogênio e a série de Lyman. Calcule a frequência do fóton emitido na transição a partir do  nível n = 2. 
     print("2 - Número quântico (n) inicial e final")
     #Mesmas Entradas para emisão e absorção
     print("3 - Numero quântico (n) final e frequencia do fóton (f), ou comprimento de onda do fóton (λ)")
@@ -51,7 +57,14 @@ def menu():
     #Fotons
     print("5 - Frequencia do fóton (f), ou comprimento de onda do fóton (λ)")
     print("6 - Energia do fóton (Efóton), em Joule (J) ou em elétron-volt (eV)")
-    
+    print("7 - Calcular o maior/menor comprimento de onda da série de Brackett")
+    print("8 - Determinar o nível quântico final a partir do comprimento de onda do fóton e do nível quântico inicial")
+    print("9 - Calcular o nível quântico final a partir da absorção de um fóton, dado o nível quântico inicial e o comprimento de onda do fóton")
+    print("10 - Calcular a frequência do fóton emitido para uma transição específica de estado")
+    print("11 - Calcular o comprimento de onda do fóton emitido na transição a partir do 30 nível excitado.")
+
+
+
     escolha=int(input())
     if escolha == 1:
         n_H = float(input("Digite o número quântico (n): "))
@@ -67,6 +80,7 @@ def menu():
         print('Un: {:.2e} eV'.format(Un))
         print('En: {:.2e} eV'.format(En))
         print('λn: {:.2e} m'.format(λn))
+        
 
 #-------------------------------------------------------------------------------------------------------------------------------#
     elif escolha == 2:
@@ -80,9 +94,9 @@ def menu():
             Efóton= EnFinal-EnInicial      #Energia do fóton absorvido   
         λ= h2* c/Efóton                    #Comprimento de onda do fóton
         f= Efóton/h2                       #Frequencia do fóton
-        print('Ef: {:.2e} eV'.format(Efóton))
-        print('λ: {:.2e} m'.format(λ))
-        print('f: {:.2e} Hz'.format(f))
+        print('Ef: {:.4e} eV'.format(Efóton))
+        print('λ: {:.4e} m'.format(λ))
+        print('f: {:.4e} Hz'.format(f))
         
 #-------------------------------------------------------------------------------------------------------------------------------#
     elif escolha == 3:
@@ -179,6 +193,87 @@ def menu():
 
         print('f = {:.2e} Hz'.format(f))
         print('comprimento de onda (λ) = {:.2e} m'.format(comprimento_de_onda))
+#-------------------------------------------------------------------------------------------------------------------------------#  
+    elif escolha == 7:
+        nInicial = 5
+        nFinal = 4
+        EnInicial = -13.6 / nInicial**2
+        EnFinal = -13.6 / nFinal**2
+        Efóton = abs(EnInicial - EnFinal)  # Energia do fóton emitido
+        λ = h2 * c / Efóton  # Comprimento de onda do fóton em metros
+        λ_nm = λ * 1e9  # Convertendo para nanômetros
+        print('O maior comprimento de onda da série de Brackett é: {:.3e} nm'.format(λ_nm))
+        print('O menor comprimento de onda da série de Brackett é: 1460 nm')
+#-------------------------------------------------------------------------------------------------------------------------------#  
+    elif escolha == 8:
+        nInicial = float(input("Digite o número quântico inicial: "))
+        lambda_foton = float(input("Digite o comprimento de onda do fóton (em nm): "))
+        lambda_foton_m = lambda_foton * 1e-9  # Convertendo nm para metros
+        
+        E_foton = (h * c) / lambda_foton_m  # Energia do fóton em Joules
+        E_foton_eV = E_foton / 1.6e-19  # Convertendo energia para eV
+
+        # Resolver para o nível quântico final usando a fórmula de energia
+        # -13.6/n_final^2 = -13.6/n_inicial^2 - E_foton_eV
+        for nFinal in range(1, int(nInicial)):
+            E_nFinal = -13.6 / nFinal**2
+            if abs(E_nFinal + 13.6 / nInicial**2) < abs(E_foton_eV):
+                print(f"O número quântico final estimado é: {nFinal}")
+                break
+#--------------------------------------------------------------------------------------------------------------------------------#
+    elif escolha == 9:
+        nInicial = float(input("Digite o número quântico inicial (n): "))
+        lambda_foton = float(input("Digite o comprimento de onda do fóton absorvido (em nm): "))
+        lambda_foton_m = lambda_foton * 1e-9  # Convertendo nm para metros
+        
+        E_foton = (h * c) / lambda_foton_m  # Energia do fóton em Joules
+        E_foton_eV = E_foton / 1.6e-19  # Convertendo energia para eV
+
+        # Usar a fórmula de energia para encontrar o nível quântico final após a absorção
+        # -13.6/n_final^2 = -13.6/n_inicial^2 + E_foton_eV
+        n_final = sqrt(-13.6 / (-13.6 / nInicial**2 + E_foton_eV))
+        print(f"Após a absorção do fóton, o elétron transita para o nível quântico: {int(round(n_final))}")
+#--------------------------------------------------------------------------------------------------------------------------------#
+    elif escolha == 10:
+        nInicial = int(input("Digite o nível quântico inicial (n_i): "))
+        nFinal = int(input("Digite o nível quântico final (n_f): "))
+        EnInicial = -13.6 / nInicial**2
+        EnFinal = -13.6 / nFinal**2
+        Efóton = abs(EnInicial - EnFinal)  # Energia do fóton emitido em eV
+        f = Efóton / h2                    # Frequência do fóton em Hz
+        print('A frequência do fóton emitido para a transição de n={} para n={} é: {:.4g} Hz'.format(nInicial, nFinal, f))
+#--------------------------------------------------------------------------------------------------------------------------------#       
+    elif escolha == 11:
+        nInicial = 3  
+        nFinal = 2  
+        EnInicial = -13.6 / nInicial**2  # Energia inicial
+        EnFinal = -13.6 / nFinal**2  # Energia final
+        Efoton = abs(EnInicial - EnFinal)  # Energia do fóton emitido em eV
+        lambda_foton = h2 * c / Efoton  # Comprimento de onda do fóton em metros
+        lambda_foton_nm = lambda_foton * 1e9  # Conversão para nanômetros
+        print(f"O comprimento de onda do fóton emitido na transição de n={nInicial} para n={nFinal} é: {lambda_foton_nm:.2f} nm")
+
+        # Classificação no espectro eletromagnético
+        if lambda_foton_nm < 0.01:
+            categoria = "Raios Gama"
+        elif lambda_foton_nm < 10:
+            categoria = "Raios X"
+        elif lambda_foton_nm < 400:
+            categoria = "Ultravioleta"
+        elif lambda_foton_nm < 700:
+            categoria = "Visível"
+        elif lambda_foton_nm < 1e6:
+            categoria = "Infravermelho"
+        elif lambda_foton_nm < 3e8:
+            categoria = "Micro-ondas"
+        else:
+            categoria = "Ondas de Rádio"
+        
+        print(f"Este fóton é classificado como {categoria} no espectro eletromagnético.")
+
+
+
+
         
     else:
         print("Opção inválida")
