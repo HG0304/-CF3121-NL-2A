@@ -62,7 +62,7 @@ def menu():
     print("9 - Calcular o nível quântico final a partir da absorção de um fóton, dado o nível quântico inicial e o comprimento de onda do fóton")
     print("10 - Calcular a frequência do fóton emitido para uma transição específica de estado")
     print("11 - Calcular o comprimento de onda do fóton emitido na transição a partir do 30 nível excitado.")
-
+    print("12 - Calcular distancia para numero atomico")
 
 
     escolha=int(input())
@@ -92,7 +92,7 @@ def menu():
             Efóton= abs(EnInicial-EnFinal) #Energia do fóton absorvido
         else:
             Efóton= EnFinal-EnInicial      #Energia do fóton absorvido   
-        λ= h2* c/Efóton                    #Comprimento de onda do fóton
+        λ= (h2*c)/Efóton                    #Comprimento de onda do fóton
         f= Efóton/h2                       #Frequencia do fóton
         print('Ef: {:.4e} eV'.format(Efóton))
         print('λ: {:.4e} m'.format(λ))
@@ -244,7 +244,7 @@ def menu():
         print('A frequência do fóton emitido para a transição de n={} para n={} é: {:.4g} Hz'.format(nInicial, nFinal, f))
 #--------------------------------------------------------------------------------------------------------------------------------#       
     elif escolha == 11:
-        nInicial = 3  
+        nInicial = int(input("Digite o nível quântico inicial (n_i): "))
         nFinal = 2  
         EnInicial = -13.6 / nInicial**2  # Energia inicial
         EnFinal = -13.6 / nFinal**2  # Energia final
@@ -270,6 +270,12 @@ def menu():
             categoria = "Ondas de Rádio"
         
         print(f"Este fóton é classificado como {categoria} no espectro eletromagnético.")
+
+#--------------------------------------------------------------------------------------------------------------------------------#
+    elif escolha == 12:
+        distancia = float(input("Digite a distancia informada : "))
+        numero_atomico = sqrt(distancia/5.293e-11)   # Distância do elétron ao núcleo em metros
+        print("Número Atômico: ", numero_atomico)
 
 
 
