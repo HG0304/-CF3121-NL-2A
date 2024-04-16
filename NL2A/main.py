@@ -245,7 +245,13 @@ def menu():
 #--------------------------------------------------------------------------------------------------------------------------------#       
     elif escolha == 11:
         nInicial = int(input("Digite o nível quântico inicial (n_i): "))
-        nFinal = 2  
+        print('escolha qual serie deseja usar')
+        print('1 - Serie de Lyman')
+        print('2 - Serie de Balmer')
+        print('3 - Serie de Paschen')
+        print('4 - Serie de Brackett')
+        serie = int(input())
+        nFinal = serie
         EnInicial = -13.6 / nInicial**2  # Energia inicial
         EnFinal = -13.6 / nFinal**2  # Energia final
         Efoton = abs(EnInicial - EnFinal)  # Energia do fóton emitido em eV
