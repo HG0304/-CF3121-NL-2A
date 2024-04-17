@@ -268,6 +268,18 @@ def menu():
             categoria = "Ultravioleta"
         elif lambda_foton_nm < 700:
             categoria = "Visível"
+            if lambda_foton_nm < 450:
+                cor = "Violeta"
+            elif lambda_foton_nm < 495:
+                cor = "Azul"
+            elif lambda_foton_nm < 570:
+             cor = "Verde"
+            elif lambda_foton_nm < 590:
+                cor = "Amarelo"
+            elif lambda_foton_nm < 620:
+                cor = "Laranja"
+            else:
+                cor = "Vermelho"
         elif lambda_foton_nm < 1e6:
             categoria = "Infravermelho"
         elif lambda_foton_nm < 3e8:
@@ -276,6 +288,8 @@ def menu():
             categoria = "Ondas de Rádio"
         
         print(f"Este fóton é classificado como {categoria} no espectro eletromagnético.")
+        if categoria == "Visível":
+            print(f"A cor associada a essa frequência é {cor}.")
 
 #--------------------------------------------------------------------------------------------------------------------------------#
     elif escolha == 12:
